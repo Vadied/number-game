@@ -3,7 +3,9 @@ import { Text, View, StyleSheet, Alert } from "react-native";
 
 import Title from "../components/ui/Title";
 import Button from "../components/ui/Button";
+import Card from "../components/ui/Card";
 import NumberContainer from "../components/game/NumberContainer";
+import Instructions from "../components/ui/Instructions";
 
 const generateRandom = (min, max, exclude) => {
   const random = Math.floor(Math.random() * (max - min) + min);
@@ -47,17 +49,20 @@ const GameScreen = ({ userNumber, onOver }) => {
   };
 
   return (
-    <View>
+    <View style={styles.screen}>
       <Title>Opponent's Guess</Title>
       <NumberContainer>{guess}</NumberContainer>
-      <View>
-        <Text>Higher or Lower?</Text>
-        <View>
-          <Button onPress={nextGuess("lower")}>-</Button>
-          <Button onPress={nextGuess("higher")}>+</Button>
+      <Card>
+        <Instructions style={styles.instructions} >Higher or Lower?</Instructions>
+        <View style={styles.buttonList}>
+          <View style={styles.button}>
+            <Button onPress={nextGuess("lower")}>-</Button>
+          </View>
+          <View style={styles.button}>
+            <Button onPress={nextGuess("higher")}>+</Button>
+          </View>
         </View>
-      </View>
-      <View></View>
+      </Card>
     </View>
   );
 };
@@ -66,4 +71,7 @@ export default GameScreen;
 
 const styles = StyleSheet.create({
   screen: { flex: 1, padding: 12 },
+  instructions: {marginBottom: 12},
+  buttonList: { flexDirection: "row" },
+  button: { flexGrow: 1 },
 });

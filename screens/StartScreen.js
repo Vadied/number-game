@@ -2,6 +2,10 @@ import { useState } from "react";
 import { Alert, StyleSheet, TextInput, View } from "react-native";
 
 import Button from "../components/ui/Button";
+import Title from "../components/ui/Title";
+import Card from "../components/ui/Card";
+import Instructions from "../components/ui/Instructions";
+
 import Colors from "../constants/colors";
 
 const StartScreen = ({ onPick }) => {
@@ -26,24 +30,28 @@ const StartScreen = ({ onPick }) => {
   };
 
   return (
-    <View style={styles.inputContainer}>
-      <TextInput
-        style={styles.numberInput}
-        maxLength={2}
-        keyboardType="number-pad"
-        autoCapitalize="none"
-        autoCorrect={false}
-        value={enteredNumber}
-        onChangeText={handleNumber}
-      />
-      <View style={styles.buttonList}>
-        <View style={styles.button}>
-          <Button onPress={handleReset}>Reset</Button>
-        </View>
-        <View style={styles.button}>
-          <Button onPress={handleConfirm}>Confirm</Button>
-        </View>
-      </View>
+    <View style={styles.container}>
+      <Title>Guess My Number</Title>
+      <Card>
+          <Instructions >Enter a number</Instructions>
+          <TextInput
+            style={styles.numberInput}
+            maxLength={2}
+            keyboardType="number-pad"
+            autoCapitalize="none"
+            autoCorrect={false}
+            value={enteredNumber}
+            onChangeText={handleNumber}
+          />
+          <View style={styles.buttonList}>
+            <View style={styles.button}>
+              <Button onPress={handleReset}>Reset</Button>
+            </View>
+            <View style={styles.button}>
+              <Button onPress={handleConfirm}>Confirm</Button>
+            </View>
+          </View>
+      </Card>
     </View>
   );
 };
@@ -51,22 +59,10 @@ const StartScreen = ({ onPick }) => {
 export default StartScreen;
 
 const styles = StyleSheet.create({
-  inputContainer: {
-    justifyContent: "center",
-    alignItems: "center",
-    padding: 16,
+  container: {
+    flex: 1,
     marginTop: 100,
-    marginHorizontal: 20,
-    backgroundColor: Colors.secondary600,
-    borderRadius: 8,
-    elevation: 4, // android only property
-    shadowColor: Colors.black,
-    shadowOffset: {
-      width: 5,
-      height: 5,
-    },
-    shadowRadius: 6,
-    shadowOpacity: 0.25,
+    alignItems: "baseline",
   },
   numberInput: {
     height: 50,
