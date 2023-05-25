@@ -90,7 +90,7 @@ const GameScreen = ({ userNumber, onOver, guesses }) => {
 export default GameScreen;
 
 const styles = StyleSheet.create({
-  screen: { flex: 1, padding: 12 },
+  screen: { flex: 1, padding: 12, alignItems: "center" },
   instructions: { marginBottom: 12 },
   buttonList: { flexDirection: "row" },
   button: { flexGrow: 1 },
