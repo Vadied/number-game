@@ -19,5 +19,10 @@ const styles = StyleSheet.create({
     padding: 24,
     borderRadius: 8,
   },
-  text: { color: Colors.secondary500, fontSize: 36, fontWeight: "bold" },
+  text: {
+    color: Colors.secondary500,
+    fontSize: 36,
+    /* fontWeight: "bold", */
+    fontFamily: "open-sans-bold",
+  },
 });

@@ -9,5 +9,9 @@ const Instructions = ({ children, style = {} }) => {
 export default Instructions;
 
 const styles = StyleSheet.create({
-  container: { color: Colors.secondary500, fontSize: 24 },
+  container: {
+    fontFamily: "open-sans",
+    color: Colors.secondary500,
+    fontSize: 24,
+  },
 });
