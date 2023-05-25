@@ -72,9 +72,6 @@ const GameScreen = ({ userNumber, onOver, guesses }) => {
         </View>
       </Card>
       <View>
-        {guesses.map((g, i) => (
-          <Text key={i}>{g}</Text>
-        ))}
         <FlatList
           data={guesses}
           renderItem={(data) => (
