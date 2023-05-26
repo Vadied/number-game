@@ -1,5 +1,11 @@
 import { useState, useEffect } from "react";
-import { View, StyleSheet, Alert, FlatList } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Alert,
+  FlatList,
+  useWindowDimensions,
+} from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
 import Title from "../components/ui/Title";
@@ -23,6 +29,8 @@ const GameScreen = ({ userNumber, onOver, guesses }) => {
   const [guess, setGuess] = useState(
     generateRandom(minBoundary, maxBoundary, userNumber)
   );
+
+  const { width } = useWindowDimensions();
 
   useEffect(() => {
     if (guess !== userNumber) return;
@@ -50,9 +58,8 @@ const GameScreen = ({ userNumber, onOver, guesses }) => {
     setGuess(newGuess);
   };
 
-  return (
-    <View style={styles.screen}>
-      <Title>Opponent's Guess</Title>
+  let content = (
+    <>
       <NumberContainer>{guess}</NumberContainer>
       <Card>
         <Instructions style={styles.instructions}>
@@ -71,6 +78,35 @@ const GameScreen = ({ userNumber, onOver, guesses }) => {
           </View>
         </View>
       </Card>
+    </>
+  );
+
+  if (width > 500)
+    content = (
+      <>
+        <Instructions style={styles.instructions}>
+          Higher or Lower?
+        </Instructions>
+        <View style={styles.buttonListWide}>
+          <View style={styles.button}>
+            <Button onPress={nextGuess("lower")}>
+              <Ionicons name="md-remove" size={24} color="white" />
+            </Button>
+          </View>
+          <NumberContainer>{guess}</NumberContainer>
+          <View style={styles.button}>
+            <Button onPress={nextGuess("higher")}>
+              <Ionicons name="greater" size={24} color="white" />
+            </Button>
+          </View>
+        </View>
+      </>
+    );
+
+  return (
+    <View style={styles.screen}>
+      <Title>Opponent's Guess</Title>
+      {content}
       <View>
         <FlatList
           data={guesses}
@@ -93,5 +129,6 @@ const styles = StyleSheet.create({
   screen: { flex: 1, padding: 12, alignItems: "center" },
   instructions: { marginBottom: 12 },
   buttonList: { flexDirection: "row" },
+  buttonListWide: { flexDirection: "row", alignItems: "center" },
   button: { flexGrow: 1 },
 });
