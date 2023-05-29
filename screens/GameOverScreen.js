@@ -6,9 +6,10 @@ import {
   ScrollView,
   useWindowDimensions,
 } from "react-native";
+
 import Title from "../components/ui/Title";
-import Colors from "../constants/colors";
 import Button from "../components/ui/Button";
+import Colors from "../constants/colors";
 
 const GameOverScreen = ({ roundsNumber, userNumber, onRestart }) => {
   const { width, height } = useWindowDimensions();

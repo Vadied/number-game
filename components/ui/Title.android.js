@@ -11,8 +11,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     /* fontWeight: "bold", */
     color: Colors.secondary500,
-    // borderWidth: Platform.OS === "ios" ? 2 : 0, // alternative
-    borderWidth: Platform.select({ ios: 2, android: 0 }),
+    borderWidth: 0,
     borderColor: Colors.secondary500,
     padding: 12,
     maxWidth: "80%",
